@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>法定養育費チェッカー｜対象になるか・月額の目安を確認｜離婚のお金ツール</title>
+<meta name="description" content="2026年4月1日施行の法定養育費（子1人あたり月2万円）の対象になるかを、離婚日・取り決めの有無・子どもの年齢から確認する無料チェッカー。一般的な情報提供のための目安判定です。">
+<link rel="stylesheet" href="assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "法定養育費チェッカー",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" },
+  "description": "法定養育費（民法766条の3）の対象可否と月額の目安を確認するツール。一般的な情報提供を目的とします。"
+}
+</script>
+</head>
+<body>
+<header class="site-header"><div class="inner">
+<a class="brand" href="index.html">離婚のお金ツール<small>養育費・婚姻費用の目安計算と解説</small></a>
+<nav class="site-nav">
+<a href="index.html">養育費シミュレーター</a>
+<a href="konpi-hiyo.html">婚姻費用シミュレーター</a>
+<a href="houtei-checker.html">法定養育費チェッカー</a>
+<a href="santei-hyo.html">算定表の見方</a>
+</nav>
+</div></header>
+
+<main>
+<h1>法定養育費チェッカー</h1>
+<p class="lead">法定養育費は、離婚時に養育費の取り決めをすることなく離婚した場合に、法律上当然に発生する養育費です（民法766条の3、2026年4月1日施行）。金額は子1人あたり月2万円と定められています。いくつかの質問に答えると、対象になる可能性と月額の目安を確認できます。</p>
+
+<div class="conclusion">
+<span class="label">先に知っておくこと</span>
+<p>対象になるのは「2026年4月1日以降の離婚・認知」で「取り決めをしていない」場合です。施行日より前の離婚には適用されません。また、月2万円は標準額・下限額ではありません。</p>
+</div>
+
+<div class="tool-card">
+<form id="houtei-form" novalidate>
+  <fieldset>
+    <legend>1. 離婚または認知について</legend>
+    <div class="field">
+      <label>区分</label>
+      <div class="radio-group">
+        <label><input type="radio" name="type" value="divorce" checked>離婚</label>
+        <label><input type="radio" name="type" value="ninchi">認知（未婚で子が生まれ、認知があった場合）</label>
+      </div>
+    </div>
+    <div class="field">
+      <label for="event-date">離婚日（または認知日）</label>
+      <input type="date" id="event-date" required>
+      <p class="note">2026年4月1日より前の場合は対象外です（遡って適用されません）。</p>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>2. 離婚（認知）のときの取り決め</legend>
+    <div class="field">
+      <label>離婚（認知）の時点で、養育費の取り決めをしましたか？</label>
+      <div class="radio-group">
+        <label><input type="radio" name="arrangement" value="none">取り決めをしていない</label>
+        <label><input type="radio" name="arrangement" value="pay">取り決めをした（支払う内容）</label>
+        <label><input type="radio" name="arrangement" value="nopay">取り決めをした（「支払わない」旨の内容を含む）</label>
+      </div>
+      <p class="note">「支払わない」という取り決めも「定めをした」ものとして扱われ、法定養育費の対象外になります。</p>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>3. 監護の状況</legend>
+    <div class="field">
+      <label>離婚（認知）の時から引き続き、あなたが子を主として監護していますか？</label>
+      <div class="radio-group">
+        <label><input type="radio" name="custody" value="yes">はい（主として私が監護している）</label>
+        <label><input type="radio" name="custody" value="no">いいえ</label>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>4. その後の取り決め・審判</legend>
+    <div class="field">
+      <label>離婚（認知）の後、養育費の取り決めをしたり、審判が確定したりしましたか？</label>
+      <div class="radio-group">
+        <label><input type="radio" name="later" value="none">していない</label>
+        <label><input type="radio" name="later" value="arrangement">取り決めをした</label>
+        <label><input type="radio" name="later" value="judgment">審判が確定した</label>
+      </div>
+    </div>
+    <div class="field">
+      <label for="later-date">取り決めをした日（または審判確定日）</label>
+      <input type="date" id="later-date">
+      <p class="note">法定養育費は、取り決めをした日／審判確定日／子が18歳に達した日のうち、いちばん早い日までが対象期間です。</p>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>5. 子ども</legend>
+    <div id="children-fields"></div>
+    <p style="margin-top:12px"><button type="button" class="btn-sub" id="add-child">＋ 子どもを追加</button></p>
+  </fieldset>
+
+  <div class="error-box" id="form-error"></div>
+  <p><button type="submit" class="btn">対象かどうかを確認する</button></p>
+</form>
+<div class="result-box" id="result"></div>
+</div>
+
+<h2>法定養育費のポイント</h2>
+<ul>
+<li>根拠は民法766条の3（令和6年法律第33号）で、金額は法務省令により子1人あたり月2万円と定められています。</li>
+<li>2万円は標準額・下限額ではありません。実際の養育費は、収入等に応じた取り決めや審判で決まります（「<a href="index.html">養育費シミュレーター</a>」もご覧ください）。</li>
+<li>相手方に支払能力の欠如や生活の著しい窮迫がある場合は、支払いを拒める場合があります。</li>
+<li>詳しくは「<a href="houtei-yoikuhi.html">法定養育費とは</a>」をご覧ください。</li>
+</ul>
+
+<section class="guide-cta">
+<h2>取り決め方で失敗しないために</h2>
+<p>法定養育費はあくまで取り決めがない場合の制度です。金額の目安が分かっても、「どう取り決めるか」で結果は変わります。取り決めの進め方、合意書の記入例、公正証書にする手順、不払い時の初動までをまとめた『養育費の取り決め完全ガイド』を準備しています。</p>
+<a class="btn" href="#" aria-disabled="true">ガイドは準備中です</a>
+</section>
+
+<h2>よくある質問</h2>
+<div class="faq-item">
+<p class="q">Q. 2026年3月に離婚しました。法定養育費はもらえますか？</p>
+<p class="a">A. 法定養育費は2026年4月1日以降の離婚・認知が対象で、施行前の離婚には遡って適用されません。この場合は通常の養育費の取り決め（協議や調停・審判）の問題になります。</p>
+</div>
+<div class="faq-item">
+<p class="q">Q. 「養育費はいらない」と口約束で離婚しました。対象になりますか？</p>
+<p class="a">A. 「支払わない」旨の取り決めがある場合は、「定めをした」ものとして扱われ、法定養育費の対象外とされています。取り決めの有無や内容の判断は個別の事情によるため、専門家にご相談ください。</p>
+</div>
+<div class="faq-item">
+<p class="q">Q. 法定養育費はいつまで続きますか？</p>
+<p class="a">A. 取り決めをした日、審判が確定した日、子が18歳に達した日のうち、いちばん早い日までです。</p>
+</div>
+<div class="faq-item">
+<p class="q">Q. 月2万円より多い金額を請求できますか？</p>
+<p class="a">A. 法定養育費の額は月2万円と定められていますが、これは標準額・下限額ではありません。収入等に応じた養育費は、取り決めや調停・審判で決めることができます。</p>
+</div>
+
+<div class="disclaimer"><strong>免責</strong>：本結果は算定表に基づく一般的な目安です。個別の事情により変わります。正式な取り決めは専門家（弁護士・家庭裁判所）へ。本サイトは個別のケースについての法的判断・助言は行いません。</div>
+</main>
+
+<footer class="site-footer"><div class="inner">
+<nav>
+<a href="index.html">養育費シミュレーター</a>
+<a href="konpi-hiyo.html">婚姻費用シミュレーター</a>
+<a href="houtei-checker.html">法定養育費チェッカー</a>
+<a href="santei-hyo.html">算定表の見方</a>
+<a href="souba.html">養育費の相場</a>
+<a href="houtei-yoikuhi.html">法定養育費とは</a>
+<a href="konpi-to-yoikuhi.html">婚姻費用と養育費の違い</a>
+<a href="zougen.html">養育費の増額・減額</a>
+</nav>
+<p>本サイトは、離婚時のお金に関する一般的な情報提供と、算定表に基づく目安の計算を行うツールです。個別の事情についての法的判断・助言、交渉、書類作成は行いません。具体的な進め方は、弁護士や家庭裁判所などの専門家にご相談ください。</p>
+<p>運営：編集部</p>
+</div></footer>
+
+<script src="assets/houtei-logic.js"></script>
+<script src="assets/houtei.js"></script>
+</body>
+</html>

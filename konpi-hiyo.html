@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>婚姻費用シミュレーター｜別居中の生活費の目安｜離婚のお金ツール</title>
+<meta name="description" content="離婚前の別居中に請求できる婚姻費用（配偶者の生活費＋子の養育費）の目安を確認する無料ツール。算定表の婚姻費用版に基づく一般的な情報提供です。">
+<link rel="stylesheet" href="assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "婚姻費用シミュレーター",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" },
+  "description": "算定表に基づく婚姻費用の目安計算ツール。一般的な情報提供を目的とします。"
+}
+</script>
+</head>
+<body>
+<header class="site-header"><div class="inner">
+<a class="brand" href="index.html">離婚のお金ツール<small>養育費・婚姻費用の目安計算と解説</small></a>
+<nav class="site-nav">
+<a href="index.html">養育費シミュレーター</a>
+<a href="konpi-hiyo.html">婚姻費用シミュレーター</a>
+<a href="houtei-checker.html">法定養育費チェッカー</a>
+<a href="santei-hyo.html">算定表の見方</a>
+</nav>
+</div></header>
+
+<main>
+<h1>婚姻費用シミュレーター</h1>
+<p class="lead">婚姻費用は、離婚が成立するまでの間（別居中を含む）に、夫婦の一方が他方へ分担する生活費です。配偶者自身の生活費に、子どもの養育費を加えたものが対象になります。</p>
+
+<div class="conclusion">
+<span class="label">期間の切り替わり</span>
+<p>離婚前は「婚姻費用」、離婚が成立した後は「養育費」に切り替わります。婚姻費用は離婚の成立で終了します。</p>
+</div>
+
+<div class="timeline">
+  <div class="step"><span class="when">別居中〜離婚成立まで</span><br><span class="what">婚姻費用</span><br>配偶者の生活費＋子の養育費</div>
+  <div class="arrow">→</div>
+  <div class="step"><span class="when">離婚成立後</span><br><span class="what">養育費</span><br>子どもの養育費のみ（取り決めがない場合は法定養育費の対象になることも）</div>
+</div>
+
+<div class="tool-card">
+<form id="sim-form" data-tool="konpi" data-children-optional="true" novalidate>
+  <fieldset>
+    <legend>受け取る側（配偶者）</legend>
+    <div class="inline-fields">
+      <div class="field">
+        <label for="obligee-income">年収（万円）</label>
+        <input type="number" id="obligee-income" min="0" step="1" placeholder="例：100">
+      </div>
+      <div class="field">
+        <label for="obligee-type">収入の種類</label>
+        <select id="obligee-type">
+          <option value="salary">給与所得</option>
+          <option value="self">自営業</option>
+        </select>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>支払う側（配偶者）</legend>
+    <div class="inline-fields">
+      <div class="field">
+        <label for="obligor-income">年収（万円）</label>
+        <input type="number" id="obligor-income" min="0" step="1" placeholder="例：500">
+      </div>
+      <div class="field">
+        <label for="obligor-type">収入の種類</label>
+        <select id="obligor-type">
+          <option value="salary">給与所得</option>
+          <option value="self">自営業</option>
+        </select>
+      </div>
+    </div>
+  </fieldset>
+
+  <p class="field note">年収の考え方は養育費と同じです。給与の場合は源泉徴収票の「支払金額」、自営業の場合は確定申告の「課税される所得金額」に、実費ではない控除を加算し戻した金額を使います。児童手当・児童扶養手当は年収に含めません。</p>
+
+  <fieldset>
+    <legend>子ども（いる場合のみ）</legend>
+    <div id="children-fields"></div>
+    <p style="margin-top:12px"><button type="button" class="btn-sub" id="add-child">＋ 子どもを追加</button></p>
+    <p class="field note">子どもがいない場合、この欄は空のままで構いません。子の生活費指数は0〜14歳＝62、15歳以上＝85です（令和元年版）。</p>
+  </fieldset>
+
+  <div class="error-box" id="form-error"></div>
+  <p><button type="submit" class="btn">入力内容を確認する</button></p>
+</form>
+<div class="result-box" id="result"></div>
+</div>
+
+<h2>婚姻費用と養育費の違い</h2>
+<table>
+<tr><th></th><th>婚姻費用</th><th>養育費</th></tr>
+<tr><th>対象期間</th><td>別居中〜離婚成立まで</td><td>離婚成立後</td></tr>
+<tr><th>含まれるもの</th><td>配偶者自身の生活費＋子の養育費</td><td>子の養育費のみ</td></tr>
+<tr><th>終了</th><td>離婚の成立で終了</td><td>子が成人するなど取り決め・審判で定めた時期まで</td></tr>
+</table>
+<p>詳しくは「<a href="konpi-to-yoikuhi.html">婚姻費用と養育費の違い</a>」をご覧ください。離婚後の養育費の目安は「<a href="index.html">養育費シミュレーター</a>」で確認できます。</p>
+
+<section class="guide-cta">
+<h2>取り決め方で失敗しないために</h2>
+<p>金額の目安が分かっても、「どう取り決めるか」で結果は変わります。取り決めの進め方、合意書の記入例、公正証書にする手順、不払い時の初動までをまとめた『養育費の取り決め完全ガイド』を準備しています。</p>
+<a class="btn" href="#" aria-disabled="true">ガイドは準備中です</a>
+</section>
+
+<h2>よくある質問</h2>
+<div class="faq-item">
+<p class="q">Q. 婚姻費用は離婚したらどうなりますか？</p>
+<p class="a">A. 婚姻費用は離婚の成立で終了し、その後は子どもの養育費の問題に切り替わります。</p>
+</div>
+<div class="faq-item">
+<p class="q">Q. 子どもがいなくても婚姻費用はありますか？</p>
+<p class="a">A. 婚姻費用は配偶者自身の生活費を含むため、子どもがいない場合でも分担の問題になることがあります。金額の目安は収入によって変わります。</p>
+</div>
+<div class="faq-item">
+<p class="q">Q. このツールの結果は確定額ですか？</p>
+<p class="a">A. いいえ。算定表に基づく一般的な目安であり、個別の事情により変わります。正式な取り決めは専門家（弁護士・家庭裁判所）へご相談ください。</p>
+</div>
+
+<div class="disclaimer"><strong>免責</strong>：本ツールは算定表に基づく一般的な目安を示すものです。個別の事情により変わります。正式な取り決めは専門家（弁護士・家庭裁判所）へ。本サイトは個別のケースについての法的判断・助言は行いません。</div>
+</main>
+
+<footer class="site-footer"><div class="inner">
+<nav>
+<a href="index.html">養育費シミュレーター</a>
+<a href="konpi-hiyo.html">婚姻費用シミュレーター</a>
+<a href="houtei-checker.html">法定養育費チェッカー</a>
+<a href="santei-hyo.html">算定表の見方</a>
+<a href="souba.html">養育費の相場</a>
+<a href="houtei-yoikuhi.html">法定養育費とは</a>
+<a href="konpi-to-yoikuhi.html">婚姻費用と養育費の違い</a>
+<a href="zougen.html">養育費の増額・減額</a>
+</nav>
+<p>本サイトは、離婚時のお金に関する一般的な情報提供と、算定表に基づく目安の計算を行うツールです。個別の事情についての法的判断・助言、交渉、書類作成は行いません。具体的な進め方は、弁護士や家庭裁判所などの専門家にご相談ください。</p>
+<p>運営：編集部</p>
+</div></footer>
+
+<script src="assets/santei-data.js"></script>
+<script src="assets/santei-tables.js"></script>
+<script src="assets/simulator.js"></script>
+</body>
+</html>
