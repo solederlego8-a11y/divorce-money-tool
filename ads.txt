@@ -1,0 +1,6 @@
+# ads.txt（2026-11-08 実ID化済み）
+# パブリッシャーIDは pub- の後に数字16桁（ca- は付けない）。
+# 配置の注意：このファイルをプロジェクトリポジトリ直下に置いても /divorce-money-tool/ads.txt となり、
+#   AdSense クローラが確認する場所ではない（詳細は divorce-money-tool-publish/ADSENSE_SETUP.md の §3）。
+#   効力のある配置先は https://solederlego8-a11y.github.io/ads.txt （ユーザーサイトのルート）。
+google.com, pub-3628281520765955, DIRECT, f08c47fec0942fa0
