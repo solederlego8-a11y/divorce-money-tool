@@ -6,6 +6,14 @@
 <!-- AdSense 審査コード（2026-11-08 有効化） -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3628281520765955" crossorigin="anonymous"></script>
 <!-- ADSENSE:HEAD ここまで -->
+<!-- GA4（共通測定ID G-W02HK1VTYF、2026-11-11 トップページへ設置） -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W02HK1VTYF"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-W02HK1VTYF');
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>養育費シミュレーター｜算定表（令和元年版）に基づく目安｜離婚のお金ツール</title>
 <meta name="description" content="改定標準算定表（令和元年版）に基づき、養育費の月額の目安を計算するための無料ツール。両親の年収と子どもの年齢区分を入力します。一般的な情報提供のための目安計算です。">
@@ -36,6 +44,74 @@
 <main>
 <h1>養育費シミュレーター</h1>
 <p class="lead">離婚後の養育費は、家庭裁判所の実務で使われる「算定表」を目安に話し合うのが一般的です。このツールは、改定標準算定表（令和元年版、2019年12月23日公表）に基づき、両親の年収と子どもの年齢区分から目安を確認するためのものです。</p>
+
+<section class="quick-sim" id="quick-sim" aria-labelledby="quick-sim-title">
+<h2 id="quick-sim-title">まずは30秒｜目安シミュレーター（簡易版）</h2>
+<p class="quick-note">読む前に、まず目安だけ。選択式の3ステップで、養育費・婚姻費用の目安レンジがすぐ出ます。これは<strong>簡易版・目安</strong>（給与所得の場合）です。正確な年収での確認は、結果の下から詳細ツールへ進めます。</p>
+<form id="quick-form" novalidate>
+  <fieldset>
+    <legend>ステップ1　知りたい費用</legend>
+    <div class="quick-choices">
+      <label class="quick-choice"><input type="radio" name="q-tool" value="yoikuhi" checked> 養育費（離婚後）</label>
+      <label class="quick-choice"><input type="radio" name="q-tool" value="konpi"> 婚姻費用（別居中・離婚前）</label>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>ステップ2　子ども</legend>
+    <div class="inline-fields">
+      <div class="field">
+        <label for="q-child-count">子どもの人数</label>
+        <select id="q-child-count">
+          <option value="0" disabled>0人（婚姻費用のみ）</option>
+          <option value="1" selected>1人</option>
+          <option value="2">2人</option>
+          <option value="3">3人</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="q-old-count">うち15歳以上の人数</label>
+        <select id="q-old-count">
+          <option value="0" selected>0人</option>
+          <option value="1">1人</option>
+          <option value="2">2人</option>
+          <option value="3">3人</option>
+        </select>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>ステップ3　双方の年収（給与・おおよそ）</legend>
+    <div class="inline-fields">
+      <div class="field">
+        <label for="q-obligor-income">支払う側の年収</label>
+        <select id="q-obligor-income">
+          <option value="200">約200万円</option>
+          <option value="300">約300万円</option>
+          <option value="400">約400万円</option>
+          <option value="500" selected>約500万円</option>
+          <option value="600">約600万円</option>
+          <option value="700">約700万円</option>
+          <option value="800">約800万円</option>
+          <option value="1000">約1,000万円</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="q-obligee-income">受け取る側の年収</label>
+        <select id="q-obligee-income">
+          <option value="0">0円（収入なし）</option>
+          <option value="100">約100万円</option>
+          <option value="200" selected>約200万円</option>
+          <option value="300">約300万円</option>
+          <option value="400">約400万円</option>
+        </select>
+      </div>
+    </div>
+    <p class="field note">年収は算定表の目盛りに合わせた代表値で計算します（詳細ツールと同じ算定表・同じ表引きです）。自営業の場合は詳細ツールへ。</p>
+  </fieldset>
+  <p><button type="submit" class="btn quick-btn">目安を見る</button></p>
+</form>
+<div class="result-box" id="quick-result"></div>
+</section>
 
 <div class="conclusion">
 <span class="label">このツールの位置づけ</span>
@@ -163,5 +239,6 @@
 <script src="assets/santei-data.js"></script>
 <script src="assets/santei-tables.js"></script>
 <script src="assets/simulator.js"></script>
+<script src="assets/quick-sim.js"></script>
 </body>
 </html>

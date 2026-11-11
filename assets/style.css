@@ -161,8 +161,30 @@ input[type="radio"],input[type="checkbox"]{margin-right:6px}
 .site-footer nav{display:flex;flex-wrap:wrap;gap:6px 16px;margin-bottom:10px}
 .site-footer a{color:var(--brand);text-decoration:none}
 
+/* quick simulator (top, 3-step, 2026-11-11) */
+.quick-sim{
+  background:#fff;border:2px solid var(--brand);border-radius:var(--radius);
+  padding:20px;margin:20px 0;
+}
+.quick-sim h2{border:none;padding:0;margin-top:0}
+.quick-note{font-size:.95rem}
+.quick-choices{display:flex;flex-wrap:wrap;gap:10px}
+.quick-choice{
+  flex:1 1 200px;border:1px solid var(--line);border-radius:8px;
+  padding:12px 14px;cursor:pointer;font-weight:600;background:#fff;
+}
+.quick-choice:has(input:checked){border-color:var(--brand);background:var(--accent)}
+.quick-result-label{font-size:.85rem;font-weight:700;color:var(--brand);letter-spacing:.05em;margin-bottom:0}
+.quick-sub{font-size:.85rem;color:var(--sub)}
+.quick-btn{width:100%;max-width:340px}
+
 @media (max-width:600px){
   h1{font-size:1.3rem}
   .result-amount{font-size:1.35rem}
   .timeline .step + .step{border-left:none;border-top:1px solid var(--line)}
+  .quick-sim{padding:16px 14px}
+  .quick-choices{flex-direction:column}
+  .quick-choice{flex:1 1 auto}
+  .quick-btn{max-width:none}
+  .quick-sim select{max-width:none}
 }
